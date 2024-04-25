@@ -15,6 +15,7 @@ class MyAssets {
 
   // App Image
   static const String appLogo = "assets/images/app_logo.png";
+  static const String star = "assets/images/star.png";
   static const String splashScreen = "assets/images/splash_screen.png";
   static const String shoppingCart = "assets/images/shopping_cart.png";
   static const String routeName = "assets/images/route.png";

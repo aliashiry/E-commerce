@@ -30,6 +30,7 @@ class Assets {
   static const String imagesShoppingCart = 'assets/images/shopping_cart.png';
   static const String imagesShorts = 'assets/images/shorts.png';
   static const String imagesSplashScreen = 'assets/images/splash_screen.png';
+  static const String imagesStar = 'assets/images/star.png';
   static const String imagesSuits = 'assets/images/suits.png';
   static const String imagesTShirt = 'assets/images/t-shirt.png';
   static const String imagesWatches = 'assets/images/watches.png';

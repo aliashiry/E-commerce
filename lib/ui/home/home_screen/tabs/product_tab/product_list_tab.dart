@@ -9,18 +9,16 @@ class ProductListTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200.h,
-      child: GridView.builder(
-        itemCount: 10,
+    return GridView.builder(
+      itemCount: 10,
         //scrollDirection: Axis.horizontal,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-        ),
-        itemBuilder: (context, index) => const ProductItem(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 16.w,
+        mainAxisSpacing: 16.h,
+        childAspectRatio: 2 / 2.4,
       ),
+      itemBuilder: (context, index) => ProductItem(),
     );
   }
 }
