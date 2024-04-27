@@ -1,7 +1,7 @@
 import 'package:e_commerce/domain/dependency_injection.dart';
 import 'package:e_commerce/ui/auth/login/cubit/login_screen_cubit.dart';
 import 'package:e_commerce/ui/auth/register/register_screen.dart';
-import 'package:e_commerce/ui/home/home_screen/home_screen_veiw.dart';
+import 'package:e_commerce/ui/home_screen/home_screen/widget/home_screen_veiw.dart';
 import 'package:e_commerce/ui/utils/app_colors.dart';
 import 'package:e_commerce/ui/utils/app_images.dart';
 import 'package:e_commerce/ui/utils/custom_text_field.dart';

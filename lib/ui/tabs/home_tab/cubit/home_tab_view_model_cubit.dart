@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/domain/entity/failures.dart';
-import 'package:e_commerce/domain/entity/home/ResponseCategoryEntity.dart';
+import 'package:e_commerce/domain/entity/home/category_or_brand/ResponseCategoryEntity.dart';
 import 'package:e_commerce/domain/use_case/brand/brand_use_case.dart';
 import 'package:e_commerce/domain/use_case/home/home_use_case.dart';
 

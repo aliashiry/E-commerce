@@ -15,6 +15,7 @@ import 'package:e_commerce/domain/use_case/auth/login/login_use_case.dart';
 import 'package:e_commerce/domain/use_case/auth/register/register_use_case.dart';
 import 'package:e_commerce/domain/use_case/brand/brand_use_case.dart';
 import 'package:e_commerce/domain/use_case/home/home_use_case.dart';
+import 'package:e_commerce/domain/use_case/product/product_use_case.dart';
 
 RegisterUseCase injectRegisterUseCase() {
   return RegisterUseCase(authRepo: injectAuthRepo());
@@ -38,6 +39,10 @@ HomeUseCase injectHomeUseCase() {
 
 BrandUseCase injectBrandUseCase() {
   return BrandUseCase(homeRepo: injectHomeRepo());
+}
+
+ProductUseCase injectProductUseCase() {
+  return ProductUseCase(homeRepo: injectHomeRepo());
 }
 
 HomeRepo injectHomeRepo() {

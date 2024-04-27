@@ -3,9 +3,9 @@ import 'package:e_commerce/domain/entity/auth/auth_result_entity.dart';
 
 class LoginResponseDto {
   LoginResponseDto({
-    this.message,
     this.user,
     this.statusMsg,
+    this.message,
     this.token,
   });
 

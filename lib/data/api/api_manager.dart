@@ -7,6 +7,7 @@ import 'package:e_commerce/data/model/auth/login/LoginResponseDto.dart';
 import 'package:e_commerce/data/model/auth/register/RegisterReqest.dart';
 import 'package:e_commerce/data/model/auth/register/RegisterResopnseDto.dart';
 import 'package:e_commerce/data/model/home/ResponseCategoryOrBrandDto.dart';
+import 'package:e_commerce/data/model/home/product/ProductResopnseDto.dart';
 import 'package:e_commerce/domain/entity/failures.dart';
 import 'package:e_commerce/ui/utils/constants.dart';
 import 'package:http/http.dart' as http;
@@ -116,6 +117,25 @@ class ApiManager {
         return Right(getBrands);
       } else {
         return Left(ServerError(errorMessage: getBrands.message));
+      }
+    } else {
+      return Left(
+          NetworkError(errorMessage: 'Please check internet connection'));
+    }
+  }
+
+  Future<Either<Failures, ProductResponseDto>> getProduct() async {
+    var connectivityResult =
+        await Connectivity().checkConnectivity(); // User defined class
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url = Uri.https(Constants.baseUrl, EndPoint.getProducts);
+      var response = await http.get(url);
+      var getProduct = ProductResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(getProduct);
+      } else {
+        return Left(ServerError(errorMessage: getProduct.message));
       }
     } else {
       return Left(

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/domain/entity/failures.dart';
-import 'package:e_commerce/domain/entity/home/ResponseCategoryEntity.dart';
+import 'package:e_commerce/domain/entity/home/category_or_brand/ResponseCategoryEntity.dart';
+import 'package:e_commerce/domain/entity/home/product/ProductResponseEntity.dart';
 import 'package:e_commerce/domain/repo/home/datasource/home_data_source.dart';
 import 'package:e_commerce/domain/repo/home/repo/home_repo.dart';
 
@@ -17,5 +18,10 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failures, ResponseCategoryOrBrandEntity>> getBrand() {
     return dataSource.getBrand();
+  }
+
+  @override
+  Future<Either<Failures, ProductResponseEntity>> getProduct() {
+    return dataSource.getProduct();
   }
 }

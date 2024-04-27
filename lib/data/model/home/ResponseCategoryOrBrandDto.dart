@@ -1,4 +1,4 @@
-import 'package:e_commerce/domain/entity/home/ResponseCategoryEntity.dart';
+import 'package:e_commerce/domain/entity/home/category_or_brand/ResponseCategoryEntity.dart';
 
 class ResponseCategoryOrBrandDto extends ResponseCategoryOrBrandEntity {
   ResponseCategoryOrBrandDto({

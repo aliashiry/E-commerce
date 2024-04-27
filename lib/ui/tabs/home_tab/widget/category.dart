@@ -1,5 +1,5 @@
-import 'package:e_commerce/domain/entity/home/ResponseCategoryEntity.dart';
-import 'package:e_commerce/ui/home/home_screen/widget/category_item.dart';
+import 'package:e_commerce/domain/entity/home/category_or_brand/ResponseCategoryEntity.dart';
+import 'package:e_commerce/ui/home_screen/home_screen/widget/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
