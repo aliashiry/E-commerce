@@ -4,11 +4,11 @@ import 'package:e_commerce/domain/entity/home/product/ProductResponseEntity.dart
 import 'package:e_commerce/domain/repo/home/repo/home_repo.dart';
 
 class ProductUseCase {
-  HomeRepo homeRepo;
+  HomeRepo homeTabRepository;
 
-  ProductUseCase({required this.homeRepo});
+  ProductUseCase({required this.homeTabRepository});
 
-  Future<Either<Failures, ProductResponseEntity>> invoke() async {
-    return await homeRepo.getProduct();
+  Future<Either<Failures, ProductResponseEntity>> invoke() {
+    return homeTabRepository.getProduct();
   }
 }

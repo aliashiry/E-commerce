@@ -6,23 +6,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
 
 class ProductItem extends StatelessWidget {
-  bool isLiked = false;
+  bool isWishlisted = false;
+
+  //todo: product
   ProductEntity productEntity;
-
   ProductItem({required this.productEntity});
-
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 191.w,
       height: 237.h,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.r),
-          //color: AppColor.whiteColor,
-          border: Border.all(
-            color: AppColor.primaryColor,
-            width: 1.w,
-          )),
+        borderRadius: BorderRadius.circular(15.r),
+        border: Border.all(
+          color: AppColor.primaryColor,
+          width: 1,
+        ),
+      ),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,40 +32,41 @@ class ProductItem extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.r),
                   child: Image.network(
-                    productEntity.imageCover ?? '',
+                    productEntity.imageCover ?? "",
                     fit: BoxFit.cover,
-                    height: 128.h,
                     width: 191.w,
+                    height: 128.h,
                   ),
                 ),
                 Positioned(
                   top: 5.h,
                   right: 2.w,
                   child: CircleAvatar(
-                    backgroundColor: AppColor.whiteColor,
-                    radius: 16.r,
+                    backgroundColor: Colors.white,
+                    radius: 15,
                     child: IconButton(
                       color: AppColor.primaryColor,
                       padding: EdgeInsets.zero,
                       onPressed: () {},
-                      iconSize: 22,
-                      icon: isLiked == true
+                      icon: isWishlisted == true
                           ? const Icon(Icons.favorite_rounded)
-                          : const Icon(Icons.favorite_border_rounded),
+                          : const Icon(
+                              Icons.favorite_border_rounded,
+                            ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
-            // SizedBox(
-            //   height: 3.h,
-            // ),
+            SizedBox(
+              height: 7.h,
+            ),
             Padding(
-              padding: EdgeInsets.only(left: 7.h),
+              padding: EdgeInsets.only(left: 8.w),
               child: Text(
                 productEntity.title ?? '',
-                overflow: TextOverflow.ellipsis,
                 maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       fontSize: 14.sp,
                       color: AppColor.darkPrimaryColor,
@@ -73,7 +74,9 @@ class ProductItem extends StatelessWidget {
                     ),
               ),
             ),
-
+            SizedBox(
+              height: 7.h,
+            ),
             Padding(
               padding: EdgeInsets.only(left: 7.h),
               child: ReadMoreText(
@@ -93,66 +96,69 @@ class ProductItem extends StatelessWidget {
                     .copyWith(color: AppColor.primaryColor, fontSize: 13.sp),
               ),
             ),
-            SizedBox(
-              height: 5.h,
-            ),
             Padding(
-              padding: EdgeInsets.only(left: 8.h),
-              child: Text(
-                'EGP ${productEntity.price}',
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      fontSize: 15.sp,
-                      color: AppColor.darkPrimaryColor,
+              padding: EdgeInsets.only(left: 8.w),
+              child: Row(
+                children: [
+                  Text(
+                    "EGP ${productEntity.price}",
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          fontSize: 14.sp,
+                          color: AppColor.darkPrimaryColor,
                       fontWeight: FontWeight.w500,
                     ),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                ],
               ),
             ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 8.h),
-                  child: Text(
-                    'Review (${productEntity.ratingsAverage})',
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
+            SizedBox(
+              height: 7.h,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 8.0.w, right: 8.w),
+              child: Row(
+                children: [
+                  Text(
+                    "Review (${productEntity.ratingsAverage})",
+                    maxLines: 1,
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          fontSize: 15.sp,
+                          fontSize: 14.sp,
                           color: AppColor.darkPrimaryColor,
                           fontWeight: FontWeight.w500,
                         ),
                   ),
-                ),
-                SizedBox(
-                  width: 10.h,
-                ),
-                Image.asset(MyAssets.star),
-                const Spacer(
-                  flex: 1,
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.add_circle,
-                    color: AppColor.primaryColor,
-                    size: 32.sp,
+                  SizedBox(
+                    width: 7.w,
                   ),
-                )
-                // const Spacer(
-                //   flex: 1,
-                // ),
-                // InkWell(
-                //   onTap: () {},
-                //   splashColor: Colors.transparent,
-                //   child: Icon(
-                //     Icons.add_circle,
-                //     color: AppColor.primaryColor,
-                //     size: 32.sp,
-                //   ),
-                // ),
-              ],
+                  Image.asset(
+                    MyAssets.star,
+                  ),
+                  const Spacer(
+                    flex: 1,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      //todo: add to cart
+                      // ProductListTabViewModel.get(context).addToCart(
+                      //  productEntity.id??"");
+                    },
+                    splashColor: Colors.transparent,
+                    child: Icon(
+                      Icons.add_circle,
+                      size: 32.sp,
+                      color: AppColor.primaryColor,
+                    ),
+                  )
+                ],
+              ),
             )
+            // GridViewCardItemBody(
+            //   productEntity: productEntity,
+            // )
           ],
         ),
       ),

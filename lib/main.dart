@@ -1,20 +1,21 @@
-import 'package:e_commerce/config/routes/app_router.dart';
 import 'package:e_commerce/config/theme/theme.dart';
+import 'package:e_commerce/ui/auth/login/login_screen.dart';
+import 'package:e_commerce/ui/auth/register/register_screen.dart';
+import 'package:e_commerce/ui/home_screen/home_screen/widget/home_screen_veiw.dart';
+import 'package:e_commerce/ui/product_details/product_details.dart';
+import 'package:e_commerce/ui/splash/splash_screen.dart';
 import 'package:e_commerce/ui/utils/bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,14 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            onGenerateRoute: (settings) => AppRoute.onGenerate(settings),
+            initialRoute: SplashScreen.routeName,
+            routes: {
+              SplashScreen.routeName: (context) => const SplashScreen(),
+              LoginScreen.routeName: (context) => const LoginScreen(),
+              RegisterScreen.routeName: (context) => const RegisterScreen(),
+              HomeScreenView.routeName: (context) => const HomeScreenView(),
+              ProductDetailsView.routeName: (context) => ProductDetailsView(),
+            },
             theme: AppTheme.mainTheme,
           );
         });

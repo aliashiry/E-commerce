@@ -1,10 +1,10 @@
 import 'package:e_commerce/domain/dependency_injection.dart';
-import 'package:e_commerce/ui/home_screen/home_screen/widget/slide_show.dart';
 import 'package:e_commerce/ui/tabs/home_tab/cubit/home_tab_view_model_cubit.dart';
 import 'package:e_commerce/ui/tabs/home_tab/widget/category.dart';
 import 'package:e_commerce/ui/utils/app_colors.dart';
 import 'package:e_commerce/ui/widget/custom_searsh.dart';
 import 'package:e_commerce/ui/widget/row_widget.dart';
+import 'package:e_commerce/ui/widget/slide_show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

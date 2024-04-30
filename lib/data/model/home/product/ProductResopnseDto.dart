@@ -5,15 +5,13 @@ class ProductResponseDto extends ProductResponseEntity {
   ProductResponseDto({
     super.results,
     this.metadata,
-    this.statusMsg,
-    this.message,
     super.data,
   });
 
   ProductResponseDto.fromJson(dynamic json) {
     results = json['results'];
-    json['message'] = message;
-    json['statusMsg'] = statusMsg;
+    statusMsg = json['statusMsg'];
+    message = json['message'];
     metadata =
         json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['data'] != null) {
@@ -25,8 +23,8 @@ class ProductResponseDto extends ProductResponseEntity {
   }
 
   Metadata? metadata;
-  String? statusMsg;
   String? message;
+  String? statusMsg;
 }
 
 class ProductDto extends ProductEntity {

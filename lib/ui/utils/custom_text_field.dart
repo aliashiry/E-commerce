@@ -34,7 +34,7 @@ class TextFieldItem extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .titleMedium!
-              .copyWith(fontSize: 18.sp, color: AppColor.whiteColor),
+              .copyWith(fontSize: 18.sp, color: AppColor.primaryColor),
           textAlign: TextAlign.left,
         ),
         Padding(

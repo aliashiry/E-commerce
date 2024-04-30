@@ -40,9 +40,8 @@ HomeUseCase injectHomeUseCase() {
 BrandUseCase injectBrandUseCase() {
   return BrandUseCase(homeRepo: injectHomeRepo());
 }
-
 ProductUseCase injectProductUseCase() {
-  return ProductUseCase(homeRepo: injectHomeRepo());
+  return ProductUseCase(homeTabRepository: injectHomeRepo());
 }
 
 HomeRepo injectHomeRepo() {
