@@ -83,14 +83,14 @@ class ProductDetailsView extends StatelessWidget {
                           ),
                     ),
                   ),
-                  Text(
-                    "EGP ${args.price}",
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      color: AppColor.darkPrimaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
+                  // Text(
+                  //   "EGP ${args.price}",
+                  //   style: TextStyle(
+                  //     fontSize: 18.sp,
+                  //     color: AppColor.darkPrimaryColor,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // )
                 ],
               ),
               SizedBox(

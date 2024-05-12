@@ -5,17 +5,32 @@ import 'package:e_commerce/ui/home_screen/home_screen/widget/home_screen_veiw.da
 import 'package:e_commerce/ui/product_details/product_details.dart';
 import 'package:e_commerce/ui/splash/splash_screen.dart';
 import 'package:e_commerce/ui/utils/bloc_observer.dart';
+import 'package:e_commerce/ui/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreference.init();
+  var user = SharedPreference.getData(Key: 'Token');
+  String route;
+  if (user != null) {
+    route = HomeScreenView.routeName;
+  } else {
+    route = SplashScreen.routeName;
+  }
+
   Bloc.observer = MyBlocObserver();
-  runApp(const MyApp());
+  runApp(MyApp(
+    route: route,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  String route;
+
+  MyApp({super.key, required this.route});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -26,7 +41,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: SplashScreen.routeName,
+            initialRoute: route,
             routes: {
               SplashScreen.routeName: (context) => const SplashScreen(),
               LoginScreen.routeName: (context) => const LoginScreen(),

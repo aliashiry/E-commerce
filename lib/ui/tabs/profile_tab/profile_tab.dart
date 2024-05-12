@@ -1,5 +1,7 @@
+import 'package:e_commerce/ui/auth/login/login_screen.dart';
 import 'package:e_commerce/ui/utils/app_colors.dart';
 import 'package:e_commerce/ui/utils/custom_text_field.dart';
+import 'package:e_commerce/ui/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -27,22 +29,34 @@ class ProfileTab extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Text(
-                      "WELCOME, MARIAM",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(color: AppColor.primaryColor),
-                    ),
-                    SizedBox(
-                      height: 8.h,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "WELCOME, MARIAM",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(color: AppColor.primaryColor),
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              SharedPreference.removeData(Key: 'Token');
+                              Navigator.pushNamedAndRemoveUntil(context,
+                                  LoginScreen.routeName, (route) => false);
+                            },
+                            icon: const Icon(
+                              Icons.logout,
+                              color: AppColor.primaryColor,
+                            )),
+                      ],
                     ),
                     const Text(
                       "Mariam@gmail.com",
                       style: TextStyle(color: AppColor.primaryColor),
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 5.h,
                     ),
                     TextFieldItem(
                       fieldName: 'Your Full Name',
