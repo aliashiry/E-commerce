@@ -2,7 +2,7 @@ import 'package:e_commerce/domain/dependency_injection.dart';
 import 'package:e_commerce/ui/tabs/home_tab/cubit/home_tab_view_model_cubit.dart';
 import 'package:e_commerce/ui/tabs/home_tab/widget/category.dart';
 import 'package:e_commerce/ui/utils/app_colors.dart';
-import 'package:e_commerce/ui/widget/custom_searsh.dart';
+import 'package:e_commerce/ui/widget/custom_text_field.dart';
 import 'package:e_commerce/ui/widget/row_widget.dart';
 import 'package:e_commerce/ui/widget/slide_show.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ class HomeListTab extends StatelessWidget {
                   ),
                   // Image.asset(MyAssets.routeName),
                   // SizedBox(height: 18.h),
-                  const CustomSearch(),
+                  const CustomTextFiled(),
                   SizedBox(
                     height: 16.h,
                   ),
@@ -46,7 +46,7 @@ class HomeListTab extends StatelessWidget {
                     name: 'Categories',
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 20.h,
                   ),
                   state is CategoryLoadingState
                       ? const Center(

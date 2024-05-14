@@ -43,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
               title: 'Success');
           SharedPreference.saveData(
               Key: 'Token', value: state.authResultEntity!.token);
+          print('${state.authResultEntity!.token}');
           Navigator.pushNamedAndRemoveUntil(
             context,
             HomeScreenView.routeName,

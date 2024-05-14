@@ -7,9 +7,13 @@ import 'package:e_commerce/data/model/auth/login/LoginRequest.dart';
 import 'package:e_commerce/data/model/auth/login/LoginResponseDto.dart';
 import 'package:e_commerce/data/model/auth/register/RegisterReqest.dart';
 import 'package:e_commerce/data/model/auth/register/RegisterResopnseDto.dart';
+import 'package:e_commerce/data/model/cart/AddToCartResponseDto.dart';
+import 'package:e_commerce/data/model/cart/GetCartResponseDto.dart';
 import 'package:e_commerce/data/model/home/ResponseCategoryOrBrandDto.dart';
 import 'package:e_commerce/data/model/home/product/ProductResopnseDto.dart';
 import 'package:e_commerce/domain/entity/failures.dart';
+import 'package:e_commerce/domain/entity/home/cart/AddToCartResponseEntity.dart';
+import 'package:e_commerce/ui/utils/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class ApiManager {
@@ -138,6 +142,124 @@ class ApiManager {
         return Right(productResponse);
       } else {
         return Left(ServerError(errorMessage: productResponse.message));
+      }
+    } else {
+      // no internet connection
+      return Left(
+          NetworkError(errorMessage: 'Please check Internet Connection'));
+    }
+  }
+
+  Future<Either<Failures, AddCartResponseEntity>> addToCart(
+      String productId) async {
+    var connectivityResult =
+        await Connectivity().checkConnectivity(); // User defined class
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url = Uri.https(Constants.baseUrl, EndPoint.addToCart);
+      var token = SharedPreference.getData(Key: 'Token');
+      var response = await http.post(url, body: {
+        "productId": productId,
+      }, headers: {
+        'token': token.toString()
+      });
+      var addToCartResponse =
+          AddCartResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        // success
+        return Right(addToCartResponse);
+      } else if (response.statusCode == 401) {
+        return Left(ServerError(errorMessage: addToCartResponse.message));
+      } else {
+        return Left(ServerError(errorMessage: addToCartResponse.message));
+      }
+    } else {
+      // no internet connection
+      return Left(
+          NetworkError(errorMessage: 'Please check Internet Connection'));
+    }
+  }
+
+  Future<Either<Failures, GetCartResponseDto>> getCart() async {
+    var connectivityResult =
+        await Connectivity().checkConnectivity(); // User defined class
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url = Uri.https(Constants.baseUrl, EndPoint.addToCart);
+      // get token
+      var token = SharedPreference.getData(Key: 'Token');
+      var response = await http.get(url, headers: {'token': token!.toString()});
+      var getCartResponse =
+          GetCartResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        // success
+        return Right(getCartResponse);
+      } else if (response.statusCode == 401) {
+        return Left(ServerError(errorMessage: getCartResponse.message));
+      } else {
+        return Left(ServerError(errorMessage: getCartResponse.message));
+      }
+    } else {
+      // no internet connection
+      return Left(
+          NetworkError(errorMessage: 'Please check Internet Connection'));
+    }
+  }
+
+  Future<Either<Failures, GetCartResponseDto>> deleteItemInCart(
+      String productId) async {
+    var connectivityResult =
+        await Connectivity().checkConnectivity(); // User defined class
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url =
+          Uri.https(Constants.baseUrl, '${EndPoint.addToCart}/$productId');
+      // get token
+      var token = SharedPreference.getData(Key: 'Token');
+      var response =
+          await http.delete(url, headers: {'token': token!.toString()});
+      var deleteItemInCartResponse =
+          GetCartResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        // success
+        return Right(deleteItemInCartResponse);
+      } else if (response.statusCode == 401) {
+        return Left(
+            ServerError(errorMessage: deleteItemInCartResponse.message));
+      } else {
+        return Left(
+            ServerError(errorMessage: deleteItemInCartResponse.message));
+      }
+    } else {
+      // no internet connection
+      return Left(
+          NetworkError(errorMessage: 'Please check Internet Connection'));
+    }
+  }
+
+  Future<Either<Failures, GetCartResponseDto>> updateCountInCart(
+      int count, String productId) async {
+    var connectivityResult =
+        await Connectivity().checkConnectivity(); // User defined class
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      Uri url =
+          Uri.https(Constants.baseUrl, '${EndPoint.addToCart}/$productId');
+      // get token
+      var token = SharedPreference.getData(Key: 'Token');
+      var response = await http.put(url,
+          body: {'count': '$count'}, headers: {'token': token!.toString()});
+      var updateCountInCartResponse =
+          GetCartResponseDto.fromJson(jsonDecode(response.body));
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        // success
+        return Right(updateCountInCartResponse);
+      } else if (response.statusCode == 401) {
+        return Left(
+            ServerError(errorMessage: updateCountInCartResponse.message));
+      } else {
+        return Left(
+            ServerError(errorMessage: updateCountInCartResponse.message));
       }
     } else {
       // no internet connection

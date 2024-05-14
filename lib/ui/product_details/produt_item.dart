@@ -1,4 +1,5 @@
 import 'package:e_commerce/domain/entity/home/product/ProductResponseEntity.dart';
+import 'package:e_commerce/ui/tabs/product_tab/cubit/product_cubit.dart';
 import 'package:e_commerce/ui/utils/app_colors.dart';
 import 'package:e_commerce/ui/utils/app_images.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class ProductItem extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 7.h,
+              height: 5.h,
             ),
             Padding(
               padding: EdgeInsets.only(left: 8.w),
@@ -75,7 +76,7 @@ class ProductItem extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 7.h,
+              height: 5.h,
             ),
             Padding(
               padding: EdgeInsets.only(left: 7.h),
@@ -96,6 +97,9 @@ class ProductItem extends StatelessWidget {
                     .copyWith(color: AppColor.primaryColor, fontSize: 13.sp),
               ),
             ),
+            SizedBox(
+              height: 5.h,
+            ),
             Padding(
               padding: EdgeInsets.only(left: 8.w),
               child: Row(
@@ -110,13 +114,13 @@ class ProductItem extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: 10.w,
+                    width: 8.w,
                   ),
                 ],
               ),
             ),
             SizedBox(
-              height: 7.h,
+              height: 2.h,
             ),
             Padding(
               padding: EdgeInsets.only(left: 8.0.w, right: 8.w),
@@ -143,8 +147,8 @@ class ProductItem extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       //todo: add to cart
-                      // ProductListTabViewModel.get(context).addToCart(
-                      //  productEntity.id??"");
+                      ProductCubit.get(context)
+                          .addToCart(productEntity.id ?? "");
                     },
                     splashColor: Colors.transparent,
                     child: Icon(

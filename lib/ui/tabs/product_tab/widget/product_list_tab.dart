@@ -1,9 +1,12 @@
 import 'package:e_commerce/domain/dependency_injection.dart';
+import 'package:e_commerce/ui/home_screen/cart/cart_screen.dart';
 import 'package:e_commerce/ui/product_details/product_details.dart';
 import 'package:e_commerce/ui/product_details/produt_item.dart';
 import 'package:e_commerce/ui/tabs/product_tab/cubit/product_cubit.dart';
 import 'package:e_commerce/ui/utils/app_colors.dart';
+import 'package:e_commerce/ui/utils/app_images.dart';
 import 'package:e_commerce/ui/widget/custom_searsh.dart';
+import 'package:e_commerce/ui/widget/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +16,9 @@ class ProductListTab extends StatelessWidget {
 
   ProductListTab({super.key});
 
-  ProductCubit viewModel = ProductCubit(productUseCase: injectProductUseCase());
+  ProductCubit viewModel = ProductCubit(
+      productUseCase: injectProductUseCase(),
+      addToCartUseCase: injectAddToCartUseCase());
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +35,32 @@ class ProductListTab extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  const CustomSearch(),
+                  Row(children: [
+                    const Expanded(
+                      child: CustomTextFiled(),
+                    ),
+                    SizedBox(
+                      width: 13.w,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(CartScreen.routeName);
+                      },
+                      child: Badge(
+                        label: Text(viewModel.numOfCartItem.toString()),
+                        child: ImageIcon(
+                          const AssetImage(MyAssets.shoppingCart),
+                          size: 28.sp,
+                          color: AppColor.primaryColor,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 7.h,
+                    ),
+                  ]),
                   SizedBox(
-                    height: 10.h,
+                    height: 16.h,
                   ),
                   state is ProductLoadingState
                       ? const Center(

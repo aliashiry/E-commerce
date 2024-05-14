@@ -10,4 +10,5 @@ class EndPoint {
   static const String getCategories = "/api/v1/categories";
   static const String getBrands = "/api/v1/brands";
   static const String getProducts = '/api/v1/products';
+  static const String addToCart = '/api/v1/cart';
 }

@@ -21,3 +21,21 @@ class ProductSuccessState extends ProductState {
 
   ProductSuccessState({required this.productResponseEntity});
 }
+
+class AddToCartLoadingState extends ProductState {
+  String? loadingMessage;
+
+  AddToCartLoadingState({required this.loadingMessage});
+}
+
+class AddToCartErrorState extends ProductState {
+  Failures? errors;
+
+  AddToCartErrorState({required this.errors});
+}
+
+class AddToCartSuccessState extends ProductState {
+  AddCartResponseEntity addCartResponseEntity;
+
+  AddToCartSuccessState({required this.addCartResponseEntity});
+}
